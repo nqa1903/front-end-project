@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trello Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <!-- <video muted autoplay playsinline>
+        <source src="img/4.mp4" type="video/mp4">
+    </video> -->
+    <header class="hidden">
+      <img src="img/3.png" alt="" />
+    </header>
+    <div class="container hidden">
+      <aside class="sidebar">
+        <p>Your Workspaces</p>
+        <nav>
+          <ul>
+            <li>
+              <a href="#allBoards"><i class="fa-solid fa-bars"></i>Boards</a>
+            </li>
+            <li>
+              <a href="#starredBoards"><i class="fa-regular fa-star"></i>Starred Boards</a>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-regular fa-rectangle-xmark"></i>Closed Boards</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="settings">
+          <ul>
+            <li>
+              <a href="#"><i class="fa-solid fa-gear"></i>Settings</a>
+            </li>
+            <li>
+              <a href="#"> <i class="fa-solid fa-door-open"></i>Sign out</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <main class="content">
+        <div class="section">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-bars"></i>Your Workspaces</h2>
+            <div class="workspace-action">
+              <button class="btn fill">Share</button>
+              <button class="btn fill">Export</button>
+              <button class="btn fill">
+                <i class="fa-regular fa-calendar"></i>This week
+              </button>
+            </div>
+          </div>
+          <div class="boards" id="allBoards">
+          </div>
+          <button class="btn fill" id="openCreateBoard">Create new board</button>
+        </div>
+        <div class="section">
+          <div class="section-header">
+            <h2><i class="fa-regular fa-star"></i>Starred Boards</h2>
+          </div>
+          <div class="boards" id="starredBoards">
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="create-modal" id="createBoardModal">
+      <div class="modal-header modal">
+        <h2>Create Board</h2>
+        <i class="far fa-times-circle"></i>
+      </div>
+      <div class="modal-bg modal">
+        <h2>Background</h2>
+        <div class="select-bg">
+          <img src="img/6.jpg" alt="" loading="lazy" class="bg-option" />
+          <img src="img/7.jpg" alt="" loading="lazy" class="bg-option" />
+          <img src="img/8.jpg" alt="" loading="lazy" class="bg-option" />
+          <img src="img/9.jpg" alt="" loading="lazy" class="bg-option" />
+        </div>
+      </div>
+      <div class="modal-color modal">
+        <h2>Color</h2>
+        <div class="select-color">
+          <div
+            class="red color-option"
+            style="background: linear-gradient(90deg, #ffb100 0%, #fa0c00 100%)"
+          ></div>
+          <div
+            class="blue color-option"
+            style="background: linear-gradient(90deg, #2609ff 0%, #d20cff 100%)"
+          ></div>
+          <div
+            class="green color-option"
+            style="background: linear-gradient(90deg, #00ff2f 0%, #00ffc8 100%)"
+          ></div>
+          <div
+            class="yellow color-option"
+            style="background: linear-gradient(90deg, #00ffe5 0%, #004bfa 100%)"
+          ></div>
+          <div
+            class="purple color-option"
+            style="background: linear-gradient(90deg, #ffa200 0%, #edfa00 100%)"
+          ></div>
+          <div
+            class="orange color-option"
+            style="background: linear-gradient(90deg, #ff00ea 0%, #fa0c00 100%)"
+          ></div>
+        </div>
+      </div>
+      <div class="modal-title modal">
+        <div class="input-wrapper">
+          <input
+            class="input"
+            type="text"
+            name="title"
+            id="boardTitle"
+            required
+            placeholder=" "
+          />
+          <label class="label" for="">Board Title</label>
+        </div>
+        <p>👋 Please provide a valid board title.</p>
+      </div>
+      <div class="modal-btn">
+        <button class="btn fill" id="closeCreateModal">Close</button>
+        <button class="btn fill" id="createBtn">Create</button>
+      </div>
+    </div>
+    <div class="create-modal update-modal" id="updateBoardModal">
+      <div class="modal-header modal">
+        <h2>Update Board</h2>
+        <i class="far fa-times-circle"></i>
+      </div>
+      <div class="modal-bg modal">
+        <h2>Background</h2>
+        <div class="select-bg">
+          <img src="img/6.jpg" alt="" loading="lazy" class="bg-option"/>
+          <img src="img/7.jpg" alt="" loading="lazy" class="bg-option"/>
+          <img src="img/8.jpg" alt="" loading="lazy" class="bg-option"/>
+          <img src="img/9.jpg" alt="" loading="lazy" class="bg-option"/>
+        </div>
+      </div>
+      <div class="modal-color modal">
+        <h2>Color</h2>
+        <div class="select-color">
+          <div
+            class="red color-option"
+            style="background: linear-gradient(90deg, #ffb100 0%, #fa0c00 100%)"
+          ></div>
+          <div
+            class="blue color-option"
+            style="background: linear-gradient(90deg, #2609ff 0%, #d20cff 100%)"
+          ></div>
+          <div
+            class="green color-option"
+            style="background: linear-gradient(90deg, #00ff2f 0%, #00ffc8 100%)"
+          ></div>
+          <div
+            class="yellow color-option"
+            style="background: linear-gradient(90deg, #00ffe5 0%, #004bfa 100%)"
+          ></div>
+          <div
+            class="purple color-option"
+            style="background: linear-gradient(90deg, #ffa200 0%, #edfa00 100%)"
+          ></div>
+          <div
+            class="orange color-option"
+            style="background: linear-gradient(90deg, #ff00ea 0%, #fa0c00 100%)"
+          ></div>
+        </div>
+      </div>
+      <div class="modal-title modal">
+        <div class="input-wrapper">
+          <input
+            class="input"
+            type="text"
+            name="title"
+            id="editBoardTitle"
+            required
+            placeholder=" "
+          />
+          <label class="label" for="">Board Title</label>
+        </div>
+        <p>👋 Please provide a valid board title.</p>
+      </div>
+      <div class="modal-btn">
+        <button class="btn fill" id="closeEditModal">Cancel</button>
+        <button class="btn fill" id="saveEditModal">Save</button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      src="https://kit.fontawesome.com/6d282c9d57.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

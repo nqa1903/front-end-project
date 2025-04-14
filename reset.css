@@ -1,0 +1,36 @@
+:root{
+    --heading-font: "Space Mono", monospace;
+    --text-font: "Roboto Mono", monospace;
+    --text-color: #e5e7eb;
+    --bg-color-gray: #6a6868;
+    --bg-color-sunset: #fccd8f;
+    --margin-bottom: 16px;
+    --line-height: 1.5;
+    --font-size-large: 48px;
+    --font-size-medium: 24px;
+    --font-size-small: 14px;
+    --padding-input: 16px 32px;
+    --btn-width: 200px;
+    --btn-height: 40px;
+    --letter-spacing: 1.2px;
+    --box-shadow-light: 0px 9px 30px rgba(212, 130, 16, 0.215);
+    --border-radius : 8px;
+}
+*{
+    margin: 0;
+    padding : 0;
+    box-sizing: border-box;    
+}
+html {
+    scroll-behavior: smooth;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+i{
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}

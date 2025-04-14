@@ -1,0 +1,330 @@
+body {
+  height: 100vh;
+  background-color: black;
+  color: var(--text-color);
+  letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height);
+  font-family: var(--text-font);
+  font-size: var(--font-size-small);
+  position: relative;
+}
+body.open-modal {
+  overflow: hidden;
+}
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--bg-color-gray);
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: inherit;
+  box-shadow: var(--box-shadow-light);
+}
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 240px;
+  width: 1px;
+  background-color: var(--bg-color-gray);
+  height: 100vh;
+}
+.container {
+  display: flex;
+  flex: 1;
+  margin-top: 60px;
+  z-index: 1;
+}
+.sidebar {
+  width: 240px;
+  padding: 32px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+.sidebar p {
+  margin-bottom: var(--margin-bottom);
+}
+.sidebar nav::after {
+  content: "";
+  display: block;
+  width: 240px;
+  height: 1px;
+  background-color: var(--bg-color-gray);
+  position: absolute;
+  left: 0;
+}
+.sidebar nav ul li,
+.sidebar .settings ul li {
+  width: 100%;
+  height: 40px;
+}
+.sidebar .settings {
+  padding-top: 20px;
+}
+i {
+  margin-right: 12px;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 240px;
+}
+.section {
+  margin-bottom: 30px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--bg-color-gray);
+  padding-bottom: var(--margin-bottom);
+  margin-top: 24px;
+}
+.section-header h2 {
+  font-family: var(--heading-font);
+  font-size: var(--font-size-medium);
+}
+.btn {
+  font-family: var(--text-font);
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--text-color);
+  padding: 16px 20px;
+  border: 1px solid var(--bg-color-gray);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  background-image: url("img/btn-liquid.png");
+  filter: hue-rotate(120deg);
+  background-repeat: repeat-x;
+  background-position: 0 -55%;
+  transition: all 1.25s ease-out;
+}
+.fill:hover {
+  background-position: 100% 55%;
+}
+.boards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  margin-bottom: var(--margin-bottom);
+}
+.board {
+  width: calc(100% / 4 - 15px);
+  height: 200px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--bg-color-gray);
+  box-shadow: var(--box-shadow-light);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 12px;
+}
+.board > button {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 4px 8px;
+  z-index: 2;
+}
+.board::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.board .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.board:hover::before {
+  opacity: 1;
+  transition-delay: 0s;
+}
+.board:hover .after {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+.board:not(:hover) .after {
+  transition-delay: 0s, 0s;
+}
+button.board {
+  font-size: var(--font-size-small);
+  font-family: var(--text-font);
+  background-image: none;
+  background-color: transparent;
+  color: var(--text-color);
+  align-items: center;
+}
+#createBoardModal,
+#updateBoardModal,
+#overlay {
+  display: none;
+}
+#createBoardModal.show,
+#updateBoardModal.show,
+#overlay.show {
+  display: block;
+}
+/* .hidden {
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeIn 2s ease-in forwards;
+    animation-delay: 8s; 
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+} */
+.overlay {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  opacity: 0.8;
+}
+.create-modal {
+  padding: 16px;
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: black;
+  box-shadow: var(--box-shadow-light);
+}
+.modal {
+  padding: 16px;
+  border-bottom: 1px solid var(--bg-color-gray);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header i {
+  font-size: var(--font-size-medium);
+  cursor: pointer;
+}
+.select-bg {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+.select-bg img {
+  width: calc(100% / 4 - 8px);
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+}
+.select-color {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+.select-color > div {
+  width: calc(100% / 6 - 8px);
+  height: 40px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+}
+.modal-title {
+  margin-top: 16px;
+}
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--margin-bottom);
+}
+.input-wrapper .input {
+  padding: 24px 28px;
+  background-color: transparent;
+  border: none;
+  border: 1px solid #6a6868 !important;
+  outline: none;
+  color: var(--text-color);
+  width: 100%;
+  font-size: var(--font-size-small);
+}
+
+.input-wrapper .input::placeholder {
+  color: transparent;
+}
+
+.input-wrapper .label {
+  font-size: 1.4rem !important;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 14px;
+  background-color: transparent;
+  font-size: var(--font-size-small);
+  transition: all 0.15s ease-out;
+  pointer-events: none;
+}
+
+.input-wrapper:focus-within .label,
+.input-wrapper .input:not(:placeholder-shown) + .label {
+  top: -20px;
+  left: 0px;
+  font-size: var(--font-size-small);
+  color: var(--text-color);
+  background-color: black;
+}
+.modal-btn {
+  margin: 16px 16px;
+  float: right;
+}
+
+.selected{
+  opacity: 0.5;
+  transition: 0.5;
+}

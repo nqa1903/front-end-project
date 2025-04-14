@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trello Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="boardLayout.css" />
+  </head>
+  <body>
+    <header class="hidden">
+      <img src="img/3.png" alt="" />
+    </header>
+    <div class="container hidden">
+      <aside class="sidebar">
+        <p>Your Workspaces</p>
+        <nav>
+          <ul>
+            <li>
+              <a href="#"><i class="fa-solid fa-bars"></i>Boards</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-regular fa-star"></i>Starred Boards</a>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-regular fa-rectangle-xmark"></i>Closed Boards</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="boards-section">
+          <div class="boards-header">
+            <p class="boards-title">Your Boards</p>
+            <i class="far fa-plus-square add-board-icon"></i>
+          </div>
+          <ul class="boards-list">
+            <li class="board-item">
+              <img src="img/6.jpg" alt="" class="board-thumbnail" />
+              <p class="board-name">Dashboard 1</p>
+            </li>
+            <li class="board-item">
+              <img src="img/6.jpg" alt="" class="board-thumbnail" />
+              <p class="board-name">Dashboard 1</p>
+            </li>
+            <li class="board-item">
+              <img src="img/6.jpg" alt="" class="board-thumbnail" />
+              <p class="board-name">Dashboard 1</p>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <main class="content">
+        <div class="dashboard-header">
+          <p class="dashboard-title">DashBoard 1</p>
+          <div class="dashboard-actions">
+            <div class="dashboard-btn">
+              <i class="fa-regular fa-star"></i> Starred Boards
+            </div>
+            <div class="dashboard-btn">
+              <i class="fas fa-columns"></i> Board
+            </div>
+            <div class="dashboard-btn"><i class="fas fa-table"></i> Table</div>
+            <div class="dashboard-btn">
+              <i class="fa-regular fa-rectangle-xmark"></i> Close this board
+            </div>
+            <div class="dashboard-btn" id="openFilterModal">
+              <i class="fas fa-filter"></i> Filter
+            </div>
+          </div>
+        </div>
+        <div class="board-content" id="boardContent">
+          <!-- <div class="board-list">
+            <div class="list-header">
+              <p class="list-title">List Name</p>
+              <div class="list-actions">
+                <i class="fas fa-compress-alt"></i>
+                <i class="fas fa-ellipsis-h"></i>
+              </div>
+            </div>
+            <ul class="task-list">
+              <li class="task-item">
+                <i class="far fa-check-circle"></i> Finished
+              </li>
+              <li class="task-item">Uncompleted</li>
+            </ul>
+            <div class="add-task">
+              <p>+ Add a card</p>
+              <i class="far fa-edit"></i>
+            </div>
+          </div> -->
+          <!-- <div class="board-list">
+            <div class="list-header">
+              <p class="list-title">List Name</p>
+              <div class="list-actions">
+                <i class="fas fa-compress-alt"></i>
+                <i class="fas fa-ellipsis-h"></i>
+              </div>
+            </div>
+            <div class="add-task">
+              <p>+ Add a card</p>
+              <i class="far fa-edit"></i>
+            </div>
+          </div> -->
+          <!-- <div class="board-list">
+            <div class="list-header">
+              <p class="list-title">List Name</p>
+              <div class="list-actions">
+                <i class="fas fa-compress-alt"></i>
+                <i class="fas fa-ellipsis-h"></i>
+              </div>
+            </div>
+            <div class="input-wrapper">
+              <input
+                  type="text"
+                  name="nameList"
+                  id="nameList"
+                  class="input"
+                  placeholder=" "
+              />
+              <label for="nameList" class="label">Enter a title</label>
+          </div>
+            <div class="add-task">
+              <p>+ Add a card</p>
+              <i class="far fa-edit"></i>
+            </div>
+          </div> -->
+          <!-- <div class="add-list-form board-list">
+            <div class="input-wrapper">
+              <input
+                type="text"
+                name="nameList"
+                id="nameList"
+                class="input"
+                placeholder=" "
+              />
+              <label for="nameList" class="label">Enter list name</label>
+            </div>
+            <div class="add-list-actions">
+              <button class="add-list-btn btn fill" >Add list</button>
+              <i class="fa-regular fa-rectangle-xmark close-add-list"></i>
+            </div>
+          </div> -->
+          <button class="add-another-list-btn board-list" id="addListBtn">
+            + Add another list
+          </button>
+        </div>
+      </main>
+    </div>
+    <!-- <div class="overlay"></div> -->
+    <div class="modal" id="filterModal">
+      <h2 class="modal-header">
+        Filter
+        <i class="fa-regular fa-rectangle-xmark close-modal" id="closeFilterModal"></i>
+      </h2>
+
+      <div class="modal-content">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            name="nameKeyword"
+            id="nameKeyword"
+            class="input"
+            placeholder=" "
+          />
+          <label for="nameKeyword" class="label">Enter a keyword</label>
+        </div>
+
+        <p class="section-title">Search card :</p>
+
+        <div class="filter-group">
+          <p class="filter-title">Card status</p>
+          <ul class="filter-list">
+            <li>
+              <input type="checkbox" name="complete" id="complete" class="remember"/>
+              <label for="complete">Mark as complete</label>
+            </li>
+            <li>
+              <input type="checkbox" name="uncomplete" id="uncomplete" class="remember"/>
+              <label for="uncomplete">Mark as uncomplete</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <p class="filter-title">Due date</p>
+          <ul class="filter-list">
+            <li>
+              <input type="checkbox" name="no-date" id="no-date" class="remember"/>
+              <label for="no-date"
+                ><i class="fa-regular fa-calendar"></i> No date</label
+              >
+            </li>
+            <li>
+              <input type="checkbox" name="overdue" id="overdue" class="remember"/>
+              <label for="overdue"
+                ><i class="fa-regular fa-clock"></i> Overdue</label
+              >
+            </li>
+            <li>
+              <input type="checkbox" name="due-in-day" id="due-in-day" class="remember"/>
+              <label for="due-in-day"
+                ><i class="fa-regular fa-clock"></i> Due in the next day</label
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <p class="filter-title">Labels</p>
+          <ul class="filter-list">
+            <li>
+              <input type="checkbox" name="no-label" id="no-label" class="remember"/>
+              <label for="no-label"
+                ><i class="fa-solid fa-tag"></i> No label</label
+              >
+            </li>
+            <li>
+              <input type="checkbox" name="label-green" id="label-green" class="remember"/>
+              <div class="label-green label-color"></div>
+            </li>
+            <li>
+              <input type="checkbox" name="label-yellow" id="label-yellow" class="remember"/>
+              <div class="label-yellow label-color"></div>
+            </li>
+            <li>
+              <input type="checkbox" name="label-orange" id="label-orange" class="remember"/>
+              <div class="label-orange label-color"></div>
+            </li>
+            <li class="label-select-item">
+              <input type="checkbox" name="select-label" id="select-label" class="remember"/>
+              <label for="select-label">
+                <select class="label-select">
+                  <option value="">Select label</option>
+                  <option value="">1</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
+                </select>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card-detail" id="cardDetail" style="display: none;">
+      <div class="card-content">
+        <div class="card-header">
+          <div class="card-title-wrapper">
+            <input type="checkbox" class="remember" />
+            <h2 class="card-title">Kịch bản</h2>
+          </div>
+          <p class="card-subtitle">in list <button class="btn fill">IN-PROGRESS</button></p>
+        </div>
+
+        <h3 class="section-title">
+          <i class="fa-solid fa-bars"></i> Description
+        </h3>
+        <div class="editor">
+          <div class="editor-toolbar">
+            <button class="tool-btn">Aa</button>
+            <button class="tool-btn"><b>B</b></button>
+            <button class="tool-btn"><i>I</i></button>
+            <button class="tool-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            <button class="tool-btn"><i class="fa-solid fa-link"></i></button>
+            <button class="tool-btn">+</button>
+            <button class="tool-btn"><i class="fa-solid fa-sun"></i></button>
+            <button class="tool-btn"><i class="fa-solid fa-paperclip"></i></button>
+            <button class="tool-btn"><i class="fa-solid fa-language"></i></button>
+            <button class="tool-btn"><i class="fa-solid fa-question"></i></button>
+          </div>
+          <textarea class="editor-textarea" placeholder="Enter description..."></textarea>
+        </div>
+    
+        <div class="action-buttons">
+          <button class="btn fill">Save</button>
+          <button class="btn fill">Cancel</button>
+        </div>
+      </div>
+    
+      <div class="sidebar-actions">
+        <button class="btn fill">
+          <i class="fa-solid fa-tag"></i> Labels
+        </button>
+        <button class="btn fill">
+          <i class="fa-regular fa-clock"></i> Dates
+        </button>
+        <button class="btn fill">
+          <i class="fa-solid fa-minus"></i> Delete
+        </button>
+      </div>
+    </div>
+    <!-- <div class="modal-move-card">
+      <h2 class="modal-title modal-header">
+        Move card
+        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+      </h2>
+      <div class="modal-content">
+        <p>Select destination</p>
+        <div class="destination-selection-group">
+          <p>Board</p>
+          <div class="input-wrapper">
+            <input type="text" name="boardName" id="boardName" class="input" placeholder=" " />
+            <label for="boardName" class="label">Enter board name</label>
+          </div>
+          <div class="list-position-group">
+            <div class="list-group">
+              <label for="list-select">List</label>
+              <br>  
+              <select name="list" id="list-select">
+                <option value="1">In-progress</option>
+                <option value="2">Complete</option>
+              </select>
+            </div>
+            <div class="position-group">
+              <label for="position-select">Position</label>
+              <br>
+              <select name="position" id="position-select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn fill">Move</button>
+    </div> -->
+    <!-- <div class="modal-move-card modal-create-label">
+      <h2 class="modal-title modal-header">
+        Create label
+        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+      </h2>
+      <div class="modal-content">
+        <div class="destination-selection-group create-label__form">
+          <p>Title</p>
+          <div class="input-wrapper">
+            <input type="text" name="boardName" id="boardName" class="input" placeholder=" " />
+            <label for="boardName" class="label">Enter title</label>
+          </div>
+        </div>
+        <div class="create-label__color-section">
+          <p>Select color</p>
+          <div class="label-selection-group">
+            <div class="label-green label-color"></div>
+            <div class="label-yellow label-color"></div>
+            <div class="label-orange label-color"></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn fill">Create</button>
+    </div> -->
+    <!-- <div class="modal-move-card modal-create-label">
+      <h2 class="modal-title modal-header">
+        Edit label
+        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+      </h2>
+      <div class="modal-content">
+        <div class="destination-selection-group create-label__form">
+          <p>Title</p>
+          <div class="input-wrapper">
+            <input type="text" name="boardName" id="boardName" class="input" placeholder=" " />
+            <label for="boardName" class="label">Enter title</label>
+          </div>
+        </div>
+        <div class="create-label__color-section">
+          <p>Select color</p>
+          <div class="label-selection-group">
+            <div class="label-green label-color"></div>
+            <div class="label-yellow label-color"></div>
+            <div class="label-orange label-color"></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn fill">Save</button>
+      <button class="btn fill">Delete</button>
+    </div> -->
+    <!-- <div class="modal-move-card">
+      <h2 class="modal-title modal-header">
+        Label
+        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+      </h2>
+      <div class="modal-content">
+        <div class="filter-group">
+          <p class="filter-title">Labels</p>
+          <ul class="filter-list" style="margin-bottom:var(--margin-bottom) ;">
+            <li>
+              <input type="checkbox" name="label-green" id="label-green" class="remember"/>
+              <div class="label-green label-color"></div>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </li>
+            <li>
+              <input type="checkbox" name="label-yellow" id="label-yellow" class="remember"/>
+              <div class="label-yellow label-color"></div>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </li>
+            <li>
+              <input type="checkbox" name="label-orange" id="label-orange" class="remember"/>
+              <div class="label-orange label-color"></div>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </li>
+          </ul>
+          <button class="btn fill">Create a new label</button>
+      </div>
+    </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      src="https://kit.fontawesome.com/6d282c9d57.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="boardLayout.js"></script>
+  </body>
+</html>
