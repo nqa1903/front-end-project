@@ -94,7 +94,6 @@ i {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: url(img/6.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -617,7 +616,17 @@ i {
   height: 812px;
   display: none;
 }
-#filterModal.show{
+#cardDetail,
+#moveCardModal,
+#createLabelModal,
+#overlay{
+  display: none;
+}
+#overlay.show,
+#filterModal.show,
+#cardDetail.show,
+#moveCardModal.show,
+#createLabelModal.show{
   display: block;
 }
 .overlay {

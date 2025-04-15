@@ -1,3 +1,4 @@
+
 function initData() {
   const existing = localStorage.getItem("usersData");
   if (!existing) {
@@ -8,37 +9,7 @@ function initData() {
           username: "john_doe",
           email: "john@example.com",
           password: "johnexample",
-          boards: [
-            {
-              id: 101,
-              title: "Dự án Website",
-              description: "Quản lý tiến độ dự án website",
-              backdrop: "img/6.jpg",
-              backdrop_gif: "img/6_gif.gif",
-              is_starred: true,
-              lists: [
-                {
-                  id: 201,
-                  title: "Việc cần làm",
-                  tasks: [
-                    {
-                      id: 301,
-                      title: "Thiết kế giao diện",
-                      description: "Tạo wireframe cho trang chủ",
-                      status: "pending",
-                      tag: [
-                        {
-                          id: 401,
-                          content: "Urgent",
-                          color: "#fff",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          boards: [],
         },
       ],
     };
@@ -48,16 +19,12 @@ function initData() {
 
 function getCurrentUser() {
   const currentUserId = parseInt(localStorage.getItem("currentUserId"));
-  const usersData = JSON.parse(localStorage.getItem("usersData")) || {
-    users: [],
-  };
+  const usersData = JSON.parse(localStorage.getItem("usersData")) || { users: [] };
   return usersData.users.find((user) => user.id === currentUserId);
 }
 
 function saveCurrentUser(updatedUser) {
-  const usersData = JSON.parse(localStorage.getItem("usersData")) || {
-    users: [],
-  };
+  const usersData = JSON.parse(localStorage.getItem("usersData")) || { users: [] };
   const updatedUsers = usersData.users.map((user) =>
     user.id === updatedUser.id ? updatedUser : user
   );
@@ -76,7 +43,8 @@ function renderBoard() {
   currentUser.boards.forEach((board) => {
     const boardDiv = document.createElement("div");
     boardDiv.classList.add("board");
-    boardDiv.setAttribute("data-title", board.title);
+    boardDiv.setAttribute("data-id", board.id);
+    boardDiv.style.cursor = "pointer";
 
     if (board.backdrop) {
       boardDiv.style.backgroundImage = `url(${board.backdrop})`;
@@ -89,6 +57,12 @@ function renderBoard() {
       <button class="fill btn openEditModal" data-id="${board.id}">Edit this board</button>
       <div class="after" style="background-image: url(${board.backdrop_gif})"></div>
     `;
+
+    boardDiv.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("openEditModal")) {
+        window.location.href = `boardLayout.html?boardId=${board.id}`;
+      }
+    });
 
     allBoards.appendChild(boardDiv);
 
@@ -107,14 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentUser = getCurrentUser();
 
   if (!currentUser) {
-    Swal.fire({
-      icon: "error",
-      title: "Session expired",
-      text: "Please sign in again",
-    }).then(() => {
-      localStorage.removeItem("currentUserId");
-      window.location.href = "sign-in.html";
-    });
+    Swal.fire({ icon: "error", title: "Session expired", text: "Please sign in again" })
+      .then(() => {
+        localStorage.removeItem("currentUserId");
+        window.location.href = "sign-in.html";
+      });
     return;
   }
 
@@ -133,9 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("saveEditModal");
 
   const clearSelected = (className) => {
-    document.querySelectorAll(`.${className}`).forEach((el) => {
-      el.classList.remove("selected");
-    });
+    document.querySelectorAll(`.${className}`).forEach((el) => el.classList.remove("selected"));
   };
 
   document.querySelectorAll(".bg-option").forEach((img) => {
@@ -160,28 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createBtn.addEventListener("click", () => {
     const title = boardTitle.value.trim();
-    if (!title) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please enter title for new board",
-      });
-      return;
-    }
-
-    if (!selectedBg && !selectedColor) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please select image or color background for new board",
-      });
-      return;
-    }
+    if (!title) return Swal.fire({ icon: "error", title: "Please enter a title" });
+    if (!selectedBg && !selectedColor)
+      return Swal.fire({ icon: "error", title: "Please select background" });
 
     const newBoard = {
       id: Date.now(),
       title,
-      description: "Quản lý tiến độ dự án website",
+      description: "",
       backdrop: selectedBg || "",
       backdrop_gif: selectedBg ? selectedBg.replace(".jpg", "_gif.gif") : "",
       color: selectedColor || "",
@@ -192,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUser.boards.push(newBoard);
     saveCurrentUser(currentUser);
     renderBoard();
-
     boardTitle.value = "";
     selectedBg = null;
     selectedColor = null;
@@ -201,22 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   saveBtn.addEventListener("click", () => {
     const updateTitle = editeTitle.value.trim();
-    const boardIndex = currentUser.boards.findIndex(
-      (board) => board.id === editingBoardId
-    );
+    const boardIndex = currentUser.boards.findIndex((b) => b.id === editingBoardId);
     if (boardIndex !== -1) {
       const board = currentUser.boards[boardIndex];
       board.title = updateTitle;
       board.backdrop = selectedBg || "";
-      board.backdrop_gif = selectedBg
-        ? selectedBg.replace(".jpg", "_gif.gif")
-        : "";
+      board.backdrop_gif = selectedBg ? selectedBg.replace(".jpg", "_gif.gif") : "";
       board.color = selectedColor || "";
-
       saveCurrentUser(currentUser);
       renderBoard();
     }
-
     editeTitle.value = "";
     selectedBg = null;
     selectedColor = null;
@@ -265,35 +213,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("openEditModal")) {
-      window.scrollTo({ top: 0 });
       editingBoardId = parseInt(e.target.dataset.id);
-      const board = currentUser.boards.find(
-        (board) => board.id === editingBoardId
-      );
-
+      const board = currentUser.boards.find((b) => b.id === editingBoardId);
       if (board) {
         editeTitle.value = board.title;
         clearSelected("bg-option");
         clearSelected("color-option");
-        selectedBg = null;
-        selectedColor = null;
         if (board.backdrop) {
           const img = [...document.querySelectorAll(".bg-option")].find(
-            (img) => img.src === board.backdrop
+            (img) => img.src.includes(board.backdrop)
           );
           if (img) img.classList.add("selected");
           selectedBg = board.backdrop;
-          selectedColor = null;
         } else if (board.color) {
           const colorDiv = [...document.querySelectorAll(".color-option")].find(
             (div) => div.style.backgroundColor === board.color
           );
           if (colorDiv) colorDiv.classList.add("selected");
           selectedColor = board.color;
-          selectedBg = null;
         }
       }
-
       openEditModal();
     }
   });

@@ -29,10 +29,10 @@
         <nav>
           <ul>
             <li>
-              <a href="#"><i class="fa-solid fa-bars"></i>Boards</a>
+              <a href="dashboard.html"><i class="fa-solid fa-bars"></i>Boards</a>
             </li>
             <li>
-              <a href="#"><i class="fa-regular fa-star"></i>Starred Boards</a>
+              <a href="boardLayout.html"><i class="fa-regular fa-star"></i>Starred Boards</a>
             </li>
             <li>
               <a href="#"
@@ -47,18 +47,7 @@
             <i class="far fa-plus-square add-board-icon"></i>
           </div>
           <ul class="boards-list">
-            <li class="board-item">
-              <img src="img/6.jpg" alt="" class="board-thumbnail" />
-              <p class="board-name">Dashboard 1</p>
-            </li>
-            <li class="board-item">
-              <img src="img/6.jpg" alt="" class="board-thumbnail" />
-              <p class="board-name">Dashboard 1</p>
-            </li>
-            <li class="board-item">
-              <img src="img/6.jpg" alt="" class="board-thumbnail" />
-              <p class="board-name">Dashboard 1</p>
-            </li>
+            
           </ul>
         </div>
       </aside>
@@ -73,7 +62,7 @@
               <i class="fas fa-columns"></i> Board
             </div>
             <div class="dashboard-btn"><i class="fas fa-table"></i> Table</div>
-            <div class="dashboard-btn">
+            <div class="dashboard-btn" id="closeBoardBtn">
               <i class="fa-regular fa-rectangle-xmark"></i> Close this board
             </div>
             <div class="dashboard-btn" id="openFilterModal">
@@ -159,7 +148,7 @@
         </div>
       </main>
     </div>
-    <!-- <div class="overlay"></div> -->
+    <div id="overlay"></div>
     <div class="modal" id="filterModal">
       <h2 class="modal-header">
         Filter
@@ -254,14 +243,14 @@
         </div>
       </div>
     </div>
-    <div class="card-detail" id="cardDetail" style="display: none;">
+    <div class="card-detail" id="cardDetail">
       <div class="card-content">
         <div class="card-header">
           <div class="card-title-wrapper">
             <input type="checkbox" class="remember" />
             <h2 class="card-title">Kịch bản</h2>
           </div>
-          <p class="card-subtitle">in list <button class="btn fill">IN-PROGRESS</button></p>
+          <p class="card-subtitle">in list <button class="btn fill" id="openMoveCard">IN-PROGRESS</button></p>
         </div>
 
         <h3 class="section-title">
@@ -285,12 +274,12 @@
     
         <div class="action-buttons">
           <button class="btn fill">Save</button>
-          <button class="btn fill">Cancel</button>
+          <button class="btn fill" id="closeCardDetail">Cancel</button>
         </div>
       </div>
     
       <div class="sidebar-actions">
-        <button class="btn fill">
+        <button class="btn fill" id="openCreateLabelModal">
           <i class="fa-solid fa-tag"></i> Labels
         </button>
         <button class="btn fill">
@@ -301,10 +290,11 @@
         </button>
       </div>
     </div>
-    <!-- <div class="modal-move-card">
+
+    <div class="modal-move-card" id="moveCardModal">
       <h2 class="modal-title modal-header">
         Move card
-        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+        <i class="fa-regular fa-rectangle-xmark close-modal" id="closeMoveCard"></i>
       </h2>
       <div class="modal-content">
         <p>Select destination</p>
@@ -335,11 +325,11 @@
         </div>
       </div>
       <button class="btn fill">Move</button>
-    </div> -->
-    <!-- <div class="modal-move-card modal-create-label">
+    </div>  
+    <div class="modal-move-card modal-create-label" id="createLabelModal">
       <h2 class="modal-title modal-header">
         Create label
-        <i class="fa-regular fa-rectangle-xmark close-modal"></i>
+        <i class="fa-regular fa-rectangle-xmark close-modal" id="closeCreateLabelModal"></i>
       </h2>
       <div class="modal-content">
         <div class="destination-selection-group create-label__form">
@@ -359,7 +349,7 @@
         </div>
       </div>
       <button class="btn fill">Create</button>
-    </div> -->
+    </div>
     <!-- <div class="modal-move-card modal-create-label">
       <h2 class="modal-title modal-header">
         Edit label
